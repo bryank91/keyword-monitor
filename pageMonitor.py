@@ -3,20 +3,25 @@
 import requests
 from bs4 import BeautifulSoup
 import time
+import sys
+import pickle
+from urllib.request import Request, urlopen
+import os.path
+import re
 
 
 def finder(keyword, url):
     # inject headers
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "lxml")
 
     # Full website source code
-    # print(str(soup))
+    print(str(soup))
 
     # result of finder
-    extract = soup.find(text=keyword)
+    extract = soup.find(p=keyword)
 
     if extract == -1 or extract == None:
         print("Unable to find keyword")
@@ -43,3 +48,49 @@ def foreverFinder(keyword, url):
         else:
             print("Found something different")
             time.sleep(10)
+
+
+def differences(url, keyword, fileReader):
+    # req = Request(url)
+    # req.add_header(
+    #     'User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36')
+    # res = urlopen(req)
+    # data = res.read()
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.text, "lxml")
+    data = str(soup.find(text=re.compile(keyword+'*')))
+
+    # append comparitor so is included in gitignore
+    fileReader = fileReader + "_comparitor"
+    comparitor = ""
+
+    # determine if file exist
+    if os.path.isfile(fileReader) == True:
+        # required for reading. there might be a more optimum step to do this
+        r = open(fileReader, "r")
+        comparitor = r.read()
+    else:  # this is the first run, no need to alert
+        file = open(fileReader, "w")
+        file.write(data)
+        comparitor = data
+        return 0
+
+    try:
+        file = open(fileReader, "w")
+
+        if data != comparitor:
+            print("Values changed!")
+            file.write(data)
+            return 1
+        else:
+            print("Values unchanged!")
+            file.write(data)
+            print('Saving')
+            return 0
+    except:
+        file.write(data)
+        print('ERROR')
+        return 0

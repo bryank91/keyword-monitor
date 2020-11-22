@@ -20,8 +20,16 @@ crontab -e
 Note: You might need to allow cron to access your files
 https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 
+## Usage
+```
+./runner.py -h
+```
+Two main feature now:
+- Finder: verifies if the keyword exist
+- Difference: verifies if there is a difference to the website from the last call
+
 
 ## Future Upgrades
-- It should take in arguments instead of changing the source code
 - Utilise forever functions
-- Uses SQLlite/JSON/csv so it only alerts you once if the keyword appears
+- Uses SQLlite instaed of files
+- Improve wildcard searches
