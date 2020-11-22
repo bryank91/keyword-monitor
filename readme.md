@@ -15,7 +15,10 @@ WEBHOOK_URL=<DISCORD_WEBHOOK_URL>
 You will need a cron job to set up the application
 ```
 crontab -e
+/Users/username/Documents/python/page-monitor/runner.py >> /Users/username/Documents/python/page-monitor/cron.log 2>&1
 ```
+Note: You might need to allow cron to access your files
+https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 
 
 ## Future Upgrades
