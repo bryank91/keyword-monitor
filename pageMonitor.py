@@ -17,17 +17,12 @@ def finder(keyword, url):
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "lxml")
 
-    # Full website source code
-    print(str(soup))
-
     # result of finder
     extract = soup.find(p=keyword)
 
     if extract == -1 or extract == None:
-        print("Unable to find keyword")
         return 0
     else:
-        print("Found keyword")
         return 1
 
 
@@ -46,7 +41,6 @@ def foreverFinder(keyword, url):
             time.sleep(10)
             continue
         else:
-            print("Found something different")
             time.sleep(10)
 
 
@@ -82,15 +76,11 @@ def differences(url, keyword, fileReader):
         file = open(fileReader, "w")
 
         if data != comparitor:
-            print("Values changed!")
             file.write(data)
             return 1
         else:
-            print("Values unchanged!")
             file.write(data)
-            print('Saving')
             return 0
     except:
         file.write(data)
-        print('ERROR')
         return 0
