@@ -1,0 +1,4 @@
+requests
+discord.py
+bs4
+python-dotenv
