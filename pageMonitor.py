@@ -14,7 +14,7 @@ def finder(keyword, url):
     # inject headers
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, timeout=5)
     soup = BeautifulSoup(response.text, "lxml")
 
     # result of finder
@@ -31,7 +31,7 @@ def foreverFinder(keyword, url):
         # inject headers
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=5)
         soup = BeautifulSoup(response.text, "lxml")
 
         # result of finder
@@ -53,7 +53,7 @@ def differences(url, keyword, fileReader):
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, timeout=5)
     soup = BeautifulSoup(response.text, "lxml")
     data = str(soup.find(text=re.compile(keyword+'*')))
 
