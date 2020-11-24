@@ -3,7 +3,7 @@ import os
 import argparse
 import sys
 from discordBot import sampleMessage, message
-from pageMonitor import finder, differences, differencesMultiple
+from pageMonitor import finder, differences, differencesMultiple, differencesPage
 from dotenv import load_dotenv
 
 # Future implementation will use ArgumentParser
@@ -23,11 +23,12 @@ webhook_url = os.getenv("DEV_WEBHOOK_URL")
 method = sys.argv[1]
 url = sys.argv[2]
 key_out = sys.argv[3]
-output = sys.argv[4]
+discord_key = sys.argv[4]
+output = sys.argv[5]
 
-discord_key = "undefined"
-if len(sys.argv) > 4:
-    discord_key = sys.argv[4]
+# discord_key = "undefined"
+# if len(sys.argv) > 4:
+#     discord_key = sys.argv[4]
 
 # switch statement does not exist in python?
 if method == 'finder':
@@ -40,6 +41,10 @@ elif method == 'difference':
         message(discord_key, webhook_url, "Targeted website has changed")
 elif method == 'differenceMultiple':
     res = differencesMultiple(url, key_out, output)
+    if res:
+        message(discord_key, webhook_url, "Targeted website has changed")
+elif method == 'differencePage':
+    res = differencesPage(url, output)
     if res:
         message(discord_key, webhook_url, "Targeted website has changed")
 else:

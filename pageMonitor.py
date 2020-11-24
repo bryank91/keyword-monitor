@@ -80,6 +80,42 @@ def differences(url, keyword, fileReader):
         return 0
 
 
+def differencesPage(url, fileReader):
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
+    response = requests.get(url, headers=headers, timeout=5)
+    soup = BeautifulSoup(response.text, "lxml")
+    data = str(soup)
+
+    # append comparitor so is included in gitignore
+    fileReader = fileReader + "_comparitor"
+    comparitor = ""
+
+    # determine if file exist
+    if os.path.isfile(fileReader) == True:
+        # required for reading. there might be a more optimum step to do this
+        r = open(fileReader, "r")
+        comparitor = r.read()
+    else:  # this is the first run, no need to alert
+        file = open(fileReader, "w")
+        file.write(data)
+        comparitor = data
+        return 0
+
+    try:
+        file = open(fileReader, "w")
+
+        if data != comparitor:
+            file.write(data)
+            return 1
+        else:
+            file.write(data)
+            return 0
+    except:
+        file.write(data)
+        return 0
+
+
 def differencesMultiple(url, keyword, fileReader):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
