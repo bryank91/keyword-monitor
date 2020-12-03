@@ -199,17 +199,19 @@ def multiReader(url, keyword, fileReader):
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
     response = requests.get(url, headers=headers, timeout=5)
     soup = BeautifulSoup(response.text, "lxml")
-
     data = ""
+
     for extract in soup.find_all(text=re.compile(keyword+'*')):
-        data += str(extract)
+        data += str(extract) + '\n'
     for extract in soup.find_all('a'):
-        if extract.find(keyword):
-            data += str(extract)
-    # for extract in soup.find_all(text=re.compile(keyword+'*')):
-    #     data += str(extract)
-    # for extract in soup.find_all(text=re.compile(keyword+'*')):
-    #     data += str(extract)
+        if re.search(keyword, str(extract), re.IGNORECASE):
+            data += str(extract) + '\n'
+    for extract in soup.find_all('href'):
+        if re.search(keyword, str(extract), re.IGNORECASE):
+            data += str(extract) + '\n'
+    for extract in soup.find_all('span'):
+        if re.search(keyword, str(extract), re.IGNORECASE):
+            data += str(extract) + '\n'
 
     # append comparitor so is included in gitignore
     fileReader = fileReader + "_comparitor"
