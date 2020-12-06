@@ -22,12 +22,21 @@ https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 
 ## Usage
 ```
+# to see syntax
 ./runner.py -h
+
+# sample
+./runner.py multiReader "https://www.helloworld.com.au" "covetedItem" "https://www.helloworld.com.au" helloworld
 ```
+
 Two main feature now:
 - Finder: verifies if the keyword exist
-- Difference: verifies if there is a difference to the website from the last call
-
+- ForeverFinder: verifies if the keyword exist in a forever loop (TBD)
+- Difference: verifies if there is a difference to the website from the last call 
+- differenceMultiple: differences via any text element based on keyword matches 
+- differenceMultipleId: differences via the id element based on keyword matches 
+- differencePage: any page differences (javascript elements change often)
+- multiReader: combination of readers from the top to one
 
 ## Future Upgrades
 - Utilise forever functions

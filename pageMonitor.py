@@ -201,6 +201,7 @@ def multiReader(url, keyword, fileReader):
     soup = BeautifulSoup(response.text, "lxml")
     data = ""
 
+    # simplify this structure
     for extract in soup.find_all(text=re.compile(keyword+'*')):
         data += str(extract) + '\n'
     for extract in soup.find_all('a'):
