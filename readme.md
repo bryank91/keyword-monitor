@@ -26,7 +26,7 @@ https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 ./runner.py -h
 
 # sample
-./runner.py multiReader "https://www.helloworld.com.au" "covetedItem" "https://www.helloworld.com.au" helloworld
+./runner.py multiReader "https://www.helloworld.com.au" "keyword" "https://www.helloworld.com.au" helloworld
 ```
 
 Two main feature now:
