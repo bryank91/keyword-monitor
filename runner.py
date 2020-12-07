@@ -3,7 +3,7 @@ import os
 import argparse
 import sys
 from discordBot import sampleMessage, message
-from pageMonitor import finder, differences, differencesMultiple, differencesPage, differencesMultipleId, multiReader
+from pageMonitor import finder, differences, differencesMultiple, differencesPage, differencesMultipleId, multiReader, multiReaderMultiFile
 from dotenv import load_dotenv
 
 # Future implementation will use ArgumentParser
@@ -53,6 +53,10 @@ elif method == 'differencePage':
         message(discord_key, webhook_url, "Targeted website has changed")
 elif method == 'multiReader':
     res = multiReader(url, key_out, output)
+    if res:
+        message(discord_key, webhook_url, "Targeted website has changed")
+elif method == 'multiReader2':
+    res = multiReaderMultiFile(url, key_out, output)
     if res:
         message(discord_key, webhook_url, "Targeted website has changed")
 else:
