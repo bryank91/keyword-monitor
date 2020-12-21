@@ -212,6 +212,9 @@ def multiReader(url, keyword, fileReader):
     for extract in soup.find_all('span'):
         if re.search(keyword, str(extract), re.IGNORECASE):
             data += str(extract) + '\n'
+    for extract in soup.find_all('button'):
+        if re.search(keyword, str(extract), re.IGNORECASE):
+            data += str(extract) + '\n'
 
     # append comparitor so is included in gitignore
     fileReader = fileReader + "_comparitor"

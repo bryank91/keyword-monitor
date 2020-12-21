@@ -14,11 +14,8 @@ from dotenv import load_dotenv
 #     'difference', help='Checks any difference by storing the last read source in the directory and comparing at time of run')
 
 if sys.argv[1] == '-h' or len(sys.argv) < 2:
-    print('./runner.py <method> <url> <keyword> <discord-key> <output-file>')
+    print('./runner.py <method> <url> <keyword> <discord-key> <output-file> <env>')
     sys.exit()
-
-load_dotenv()
-webhook_url = os.getenv("DEV_WEBHOOK_URL")
 
 method = sys.argv[1]
 url = sys.argv[2]
@@ -26,9 +23,12 @@ key_out = sys.argv[3]
 discord_key = sys.argv[4]
 output = sys.argv[5]
 
-# discord_key = "undefined"
-# if len(sys.argv) > 4:
-#     discord_key = sys.argv[4]
+env = "DEV_WEBHOOK_URL"
+if len(sys.argv) > 6:
+    env = sys.argv[6]
+
+load_dotenv()
+webhook_url = os.getenv(env)
 
 # switch statement does not exist in python?
 if method == 'finder':
