@@ -23,6 +23,8 @@ Note: You might need to allow cron to access your files
 https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 
 ## Setting up in TOR proxies
+https://jarroba.com/anonymous-scraping-by-tor-network/#:~:text=The%20most%20common%20use%20case,can%20continue%20scraping%20this%20website.
+
 ```
 sudo apt-get install privoxy
 sudo apt-get install python-stem 
