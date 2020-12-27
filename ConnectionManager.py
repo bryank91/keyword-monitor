@@ -30,10 +30,7 @@ class ConnectionManager:
         """
         Request to URL through local proxy
         """
-        proxy_support = urllib.request.ProxyHandler(
-            {"http": "127.0.0.1:8118",
-             "https": "127.0.0.1:8118"
-            }) # TODO: hardcoded
+        proxy_support = urllib.request.ProxyHandler({ "http": "127.0.0.1:8118" }) # TODO: hardcoded
         opener = urllib.request.build_opener(proxy_support)
         urllib.request.install_opener(opener)
 
@@ -79,4 +76,4 @@ class ConnectionManager:
             print ("Waiting to obtain new IP: %s Seconds" % seg)
             self.new_ip = self.request("http://icanhazip.com/").read() # TODO: change
 
-        print ("New connection with IP: %s" % self.new_ip)
+        # print ("New connection with IP: %s" % self.new_ip)
