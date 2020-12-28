@@ -31,6 +31,40 @@ sudo apt-get install python-stem
 sudo apt-get install tor
 ```
 
+### Setting up TOR
+
+Password Hashing:
+`tor --hash-password my_password`
+
+Control Files
+`sudo vim /etc/tor/torrc` and change the file to
+
+```
+ControlPort 9051
+# hashed password below is obtained via `tor --hash-password my_password`
+HashedControlPassword 16:9529EB03A306DE6F60171DE514EA2FCD49235BAF1E1E55897209679683
+CookieAuthentication 1
+```
+
+Restart service client
+`sudo /etc/init.d/tor restart`
+
+### Setting up Privoxy
+Changing Control files:
+```
+sudo vim /etc/privoxy/config
+```
+Uncomment this line
+```
+forward-socks5 / 127.0.0.1:9050
+```
+
+Restart Service client
+```
+sudo /etc/init.d/privoxy restart
+```
+
+
 ## Usage
 ```
 # to see syntax
@@ -56,6 +90,7 @@ sudo apt-get install tor
 - Utilise forever functions and proper failover mechanisms
 - Improve wildcard searches
 - Setting up databases for mutliple monitors to query
+- Add logging
 
 ## Tech Debt
 - Clean up inferior functions
