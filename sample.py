@@ -13,7 +13,6 @@ def testProxy(keyword, fileReader):
     response = cm.request("https://www.amazon.com.au/s?k=ps5&ref=nb_sb_noss").read() # TODO: hardcoded
     # response = cm.request("http://icanhazip.com/").read() # TODO: change    
     soup = BeautifulSoup(response, "lxml")
-    print(soup)
     data = ""
     for extract in soup.find_all(text=re.compile(keyword+'*')):
         data += str(extract) + '\n'
