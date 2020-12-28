@@ -3,7 +3,7 @@ import os
 import argparse
 import sys
 from discordBot import sampleMessage, message
-from pageMonitor import finder, differences, differencesMultiple, differencesPage, differencesMultipleId, multiReader, multiReaderMultiFile
+from pageMonitor import differencesMultipleId, multiReader, multiReaderMultiFile
 from dotenv import load_dotenv
 
 # Future implementation will use ArgumentParser
@@ -31,19 +31,7 @@ load_dotenv()
 webhook_url = os.getenv(env)
 
 # switch statement does not exist in python?
-if method == 'finder':
-    res = finder(key_out, url)
-    if res:
-        message(discord_key, webhook_url, "Found keyword {}".format(key_out))
-elif method == 'difference':
-    res = differences(url, key_out, output)
-    if res:
-        message(discord_key, webhook_url, "Targeted website has changed")
-elif method == 'differenceMultiple':
-    res = differencesMultiple(url, key_out, output)
-    if res:
-        message(discord_key, webhook_url, "Targeted website has changed")
-elif method == 'differenceMultipleId':
+if method == 'differenceMultipleId':
     res = differencesMultipleId(url, key_out, output)
     if res:
         message(discord_key, webhook_url, "Targeted website has changed")
@@ -53,10 +41,6 @@ elif method == 'differencePage':
         message(discord_key, webhook_url, "Targeted website has changed")
 elif method == 'multiReader':
     res = multiReader(url, key_out, output)
-    if res:
-        message(discord_key, webhook_url, "Targeted website has changed")
-elif method == 'multiReader2':
-    res = multiReaderMultiFile(url, key_out, output)
     if res:
         message(discord_key, webhook_url, "Targeted website has changed")
 else:
