@@ -72,6 +72,12 @@ sudo /etc/init.d/privoxy restart
 
 # sample
 ./runner.py multiReader "https://www.helloworld.com.au" "keyword" "https://www.helloworld.com.au" helloworld <optional-env-variable>
+
+# to see snytax of v2
+python3 main.py -h
+
+# sample v2
+python3 main.py proxyReader "https://www.site.com" "Add to Cart" "tester" "span" "submit.button"
 ```
 
 ### Features
@@ -82,15 +88,19 @@ sudo /etc/init.d/privoxy restart
 - differenceMultipleId: differences via the id element based on keyword matches 
 - differencePage: any page differences (javascript elements change often)
 - multiReader: combination of readers from the top to one
+- proxyReader: uses TOR and selective elements and ids
 
 ### Experimental
 - sample.py
+- main.py
 
 ## Future Upgrades
 - Utilise forever functions and proper failover mechanisms
-- Improve wildcard searches
 - Setting up databases for mutliple monitors to query
 - Add logging
+
+## Completed Updates
+- DONE: Improve wildcard searches. Now in main.py
 
 ## Tech Debt
 - Clean up inferior functions

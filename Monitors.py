@@ -20,7 +20,7 @@ class Monitors:
         return response
 
     @classmethod
-    def _bsExtract(self, keyword, response, bsType, fileReader):
+    def _bsExtract(self, keyword, response, bsType, fileReader, id=None):
         soup = BeautifulSoup(response, "lxml")
         data = ""
 
@@ -36,9 +36,14 @@ class Monitors:
                 if re.search(keyword, str(extract), re.IGNORECASE):
                     data += str(extract) + '\n'
         elif bsType == 'span':
-            for extract in soup.find_all('span'):
-                if re.search(keyword, str(extract), re.IGNORECASE):
-                    data += str(extract) + '\n'
+            if id != None:
+                for extract in soup.find_all('span',id=id):
+                    if re.search(keyword, str(extract), re.IGNORECASE):
+                        data += str(extract) + '\n'
+            else:
+                for extract in soup.find_all('span'):
+                    if re.search(keyword, str(extract), re.IGNORECASE):
+                        data += str(extract) + '\n'
         elif bsType == 'button':
             for extract in soup.find_all('button'):
                 if re.search(keyword, str(extract), re.IGNORECASE):
@@ -76,14 +81,14 @@ class Monitors:
             return 0
 
     @classmethod
-    def query(self, keyword, site, bsType, filename):
+    def query(self, keyword, site, bsType, filename, bsTypeId):
         res = self._proxify(site)
-        success = self._bsExtract(keyword,res, bsType, filename)
+        success = self._bsExtract(keyword,res, bsType, filename, bsTypeId)
         if success:
-            print("Sucessfully extracted data")
+            print("Found change in: " + site)
             return 1
         else:
-            print("Encountered error when extracting data")
+            print("No change in: " + site)
             return 0
 
 # testProxy(azKeyword,"sample")
