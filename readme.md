@@ -26,9 +26,9 @@ https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 https://jarroba.com/anonymous-scraping-by-tor-network/#:~:text=The%20most%20common%20use%20case,can%20continue%20scraping%20this%20website.
 
 ```
-sudo apt-get install privoxy
-sudo apt-get install python-stem 
-sudo apt-get install tor
+sudo apt-get install privoxy or brew install privoxy
+sudo apt-get install python-stem or pip3 install stem
+sudo apt-get install tor or brew install tor
 ```
 
 ### Setting up TOR
@@ -37,7 +37,11 @@ Password Hashing:
 `tor --hash-password my_password`
 
 Control Files
-`sudo vim /etc/tor/torrc` and change the file to
+
+`sudo vim /etc/tor/torrc` and change the file to (Ubuntu)
+
+`cp /usr/local/etc/tor/torrc.sample /usr/local/etc/tor/torrc` (OSX)
+`sudo vim /usr/local/etc/tor/torrc` and change the file to
 
 ```
 ControlPort 9051
@@ -47,12 +51,14 @@ CookieAuthentication 1
 ```
 
 Restart service client
-`sudo /etc/init.d/tor restart`
+`sudo /etc/init.d/tor restart` (Ubuntu)
+`sudo brew services start tor` (OSX)
 
 ### Setting up Privoxy
 Changing Control files:
 ```
-sudo vim /etc/privoxy/config
+sudo vim /etc/privoxy/config (ubuntu)
+vim /usr/local/etc/privoxy/config (osx)
 ```
 Uncomment this line
 ```
@@ -61,7 +67,8 @@ forward-socks5 / 127.0.0.1:9050
 
 Restart Service client
 ```
-sudo /etc/init.d/privoxy restart
+sudo /etc/init.d/privoxy restart (ubuntu)
+brew services restart privoxy (osx)
 ```
 
 
