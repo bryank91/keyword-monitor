@@ -4,13 +4,22 @@ from bs4 import BeautifulSoup
 import re
 import os.path
 import sys
+import requests
 
 # azKeyword = sys.argv[1]
+
 
 class Monitors:
     def __init__(self):
         self.placeholder = "0"
         self.placeholdersite = "http://icanhazzip.com/"
+
+    @classmethod
+    def _request(self, site):
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
+        response = requests.get(site, headers=headers, timeout=5)
+        return response.text
 
     @classmethod
     def _proxify(self, site):
@@ -27,7 +36,7 @@ class Monitors:
         if bsType == 'text':
             for extract in soup.find_all(text=re.compile(keyword+'*')):
                 data += str(extract) + '\n'
-        elif bsType == 'a': 
+        elif bsType == 'a':
             for extract in soup.find_all('a'):
                 if re.search(keyword, str(extract), re.IGNORECASE):
                     data += str(extract) + '\n'
@@ -37,7 +46,7 @@ class Monitors:
                     data += str(extract) + '\n'
         elif bsType == 'span':
             if id != None:
-                for extract in soup.find_all('span',id=id):
+                for extract in soup.find_all('span', id=id):
                     if re.search(keyword, str(extract), re.IGNORECASE):
                         data += str(extract) + '\n'
             else:
@@ -49,8 +58,10 @@ class Monitors:
                 if re.search(keyword, str(extract), re.IGNORECASE):
                     data += str(extract) + '\n'
         else:
-            print("Unable to determine type passed. Please retry (eg. text)")
-            return 0
+            print("Using customised tag")
+            for extract in soup.find_all(bsType):
+                if re.search(keyword, str(extract), re.IGNORECASE):
+                    data += str(extract) + '\n'
 
         # append comparitor so is included in gitignore
         fileReader = fileReader + "_comparitor"
@@ -77,13 +88,18 @@ class Monitors:
                 file.write(data)
                 return 0
         except:
-            file.write(data) # TODO: pokemon catcher
+            file.write(data)  # TODO: pokemon catcher
             return 0
 
     @classmethod
-    def query(self, keyword, site, bsType, filename, bsTypeId):
-        res = self._proxify(site)
-        success = self._bsExtract(keyword,res, bsType, filename, bsTypeId)
+    def query(self, keyword, site, bsType, filename, bsTypeId, enableProxy=False):
+        res = ""
+        if enableProxy == True:
+            res = self._proxify(site)
+        else:
+            res = self._request(site)
+
+        success = self._bsExtract(keyword, res, bsType, filename, bsTypeId)
         if success:
             print("Found change in: " + site)
             return 1

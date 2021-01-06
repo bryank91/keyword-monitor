@@ -31,9 +31,15 @@ webhook_url = os.getenv(env)
 
 if method == 'proxyReader':
     m = Monitors()
-    suc = m.query(keyword,siteUrl,bsType,filename,bsTypeId)
+    suc = m.query(keyword, siteUrl, bsType, filename, bsTypeId, True)
     if suc:
-        Discord.message(siteUrl,webhook_url, "Proxied site has changed")
+        Discord.message(siteUrl, webhook_url, "Proxied site has changed")
+elif method == 'reader':
+    m = Monitors()
+    suc = m.query(keyword, siteUrl, bsType, filename, bsTypeId)
+    if suc:
+        Discord.message(siteUrl, webhook_url, "Site trigger")
+
 else:
     print('Unable to determine method that has been specified. Please try again..')
     sys.exit()
