@@ -15,7 +15,7 @@ class Monitors:
         self.placeholdersite = "http://icanhazzip.com/"
 
     @classmethod
-    def _request(self, site):
+    def getRequest(self, site):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69'}
         response = requests.get(site, headers=headers, timeout=5)
@@ -92,12 +92,12 @@ class Monitors:
             return 0
 
     @classmethod
-    def query(self, keyword, site, bsType, filename, bsTypeId, enableProxy=False):
+    def query(self, keyword, site, bsType, filename, bsTypeId, enableProxy= False):
         res = ""
         if enableProxy == True:
             res = self._proxify(site)
         else:
-            res = self._request(site)
+            res = self.getRequest(site)
 
         success = self._bsExtract(keyword, res, bsType, filename, bsTypeId)
         if success:

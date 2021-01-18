@@ -20,3 +20,11 @@ class Discord:
             webhook.send(loc + ": " + message)
         except:
             print("Something went wrong when trying to send messages")
+
+    @staticmethod
+    def send(webhook_url,message):
+        webhook = Webhook.from_url(webhook_url, adapter=RequestsWebhookAdapter())
+        try:
+            webhook.send(message)
+        except:
+            print("Something went wrong when trying to send messages")
