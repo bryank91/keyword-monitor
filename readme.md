@@ -97,6 +97,8 @@ python3 main.py proxyReader "https://www.site.com" "Add to Cart" "tester" "span"
 - multiReader: combination of readers from the top to one
 - proxyReader: uses TOR and selective elements and ids
 
+- mainFeed: monitors feed and print out the latest items
+
 ### Experimental
 - sample.py
 - main.py
