@@ -85,6 +85,9 @@ python3 main.py -h
 
 # sample v2
 python3 main.py proxyReader "https://www.site.com" "Add to Cart" "tester" "span" "submit.button"
+
+# running feed
+python3 mainFeed.py "https://www.site.com.au/feed" DISCORD_FEED_WEBHOOK_URL
 ```
 
 ### Features
