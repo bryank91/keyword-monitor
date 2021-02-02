@@ -30,7 +30,7 @@ class ConnectionManager:
         """
         Request to URL through local proxy
         """
-        proxy_support = urllib.request.ProxyHandler({ "http": "127.0.0.1:8118" }) # TODO: hardcoded
+        proxy_support = urllib.request.ProxyHandler({ "http": "127.0.0.1:8118", "ExitNodes": "{AU}" }) # TODO: hardcoded
         opener = urllib.request.build_opener(proxy_support)
         urllib.request.install_opener(opener)
 
