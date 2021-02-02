@@ -28,3 +28,4 @@ class Discord:
             webhook.send(message)
         except:
             print("Something went wrong when trying to send messages")
+

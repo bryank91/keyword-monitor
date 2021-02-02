@@ -117,3 +117,6 @@ python3 mainFeed.py "https://www.site.com.au/feed" DISCORD_FEED_WEBHOOK_URL
 ## Tech Debt
 - Clean up inferior functions
 - Use classes instead of subroutines or scripts
+- Deprecate inferior functions (eg. Catch monitor)
+- It should be running forever functions or as a service instead
+- Move it to it's appropriate folders
