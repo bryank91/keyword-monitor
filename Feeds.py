@@ -60,7 +60,7 @@ class Feeds:
         return result
 
     @classmethod
-    def logToDiscord(self, webhook_url ,arr):
+    def logToDiscord(self, webhook_url ,arr, keywordArr = []):
 
         # sort the list according to the smallest to biggest
         sortedArr = sorted(arr, key=lambda x: (x['id']))
@@ -72,6 +72,13 @@ class Feeds:
             if (int(highestId) > self._checkId('oz')):
                 message =  f'''{item['title']} - {item['link']}'''
                 Discord.send(webhook_url,message)
+
+                # verify if it matches certain keywords
+                if len(keywordArr) > 0:
+                    for keyword in keywordArr:
+                        if keyword in item['title'].lower():
+                            Discord.send(webhook_url,"Keyword: " + keyword + " trigger @here") 
+                 
 
         self._logId(highestId,'oz')
 

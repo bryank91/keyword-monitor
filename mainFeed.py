@@ -12,13 +12,15 @@ if sys.argv[1] == '-h' or len(sys.argv) < 2:
     print('./mainFeed.py url webhook_url')
     sys.exit()
 
-env = "FEED_WEBHOOK_URL"
+env = "FEED_WEBHOOK_URL" # semi permenant
 bsTypeId = None
 
 url = sys.argv[1]
 
+# absorbs multiple keywords
+keywordArr = []
 if len(sys.argv) > 2:
-    env = sys.argv[2] # sets the webhook url
+    keywordArr = sys.argv[2].split(',')
 
 load_dotenv()
 webhook_url = os.getenv(env)
@@ -26,5 +28,5 @@ webhook_url = os.getenv(env)
 f = Feeds()
 data = f._generateData(url)
 res = f._separateData(data)
-f.logToDiscord(webhook_url,res)
+f.logToDiscord(webhook_url, res, keywordArr)
 # Discord.message(siteUrl, webhook_url, "Proxied site has changed")
