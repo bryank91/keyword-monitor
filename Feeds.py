@@ -87,7 +87,7 @@ class Feeds:
                 if len(keywordArr) > 0:
                     for keyword in keywordArr:
                         if keyword in item['title'].lower():
-                            Discord.send(webhook_url,"Keyword: " + keyword + " trigger @Users") 
+                            Discord.send(webhook_url,"Keyword: " + keyword + " trigger @everyone") 
                  
 
         self._logId(highestId,'oz')
