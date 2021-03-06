@@ -1,6 +1,6 @@
 # Keyword Monitor
 Monitors website for specific keywords
-Previously was used to monitor websites for products such as monitor releases, Hypewear, In-Stock keyboards with successful rates.
+Previously was used to monitor websites for products such as monitor console releases, hypewear, in-stock keyboards with fairly high success rates.
 However proxies tend to be clipped due it being TOR public nodes.
 Decided to open source it for help in improving the product and for public use.
 
