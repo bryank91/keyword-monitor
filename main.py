@@ -4,8 +4,9 @@ import argparse
 import sys
 from dotenv import load_dotenv
 
-from Monitors import Monitors
-from Discord import Discord
+from Element.Monitors import Monitors
+from Discord.Discord import Discord
+from Proxy.ConnectionManager import ConnectionManager
 
 if sys.argv[1] == '-h' or len(sys.argv) < 2:
     print('./runner.py <method> <url> <keyword> <output-file> <type> <id> <env>')

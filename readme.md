@@ -76,21 +76,28 @@ brew services restart privoxy (osx)
 ```
 # to see syntax
 ./runner.py -h
+python3 main.py -h
 
 # sample
 ./runner.py multiReader "https://www.helloworld.com.au" "keyword" "https://www.helloworld.com.au" helloworld <optional-env-variable>
 
-# to see snytax of v2
-python3 main.py -h
-
-# sample v2
 python3 main.py proxyReader "https://www.site.com" "Add to Cart" "tester" "span" "submit.button"
 
 # running feed
-python3 mainFeed.py "https://www.site.com.au/feed" DISCORD_FEED_WEBHOOK_URL
+python3 mainFeed.py "https://www.site.com.au/feed" 
+python3 mainFeed.py "https://www.site.com.au/feed" "keyword1,keyword2"
 ```
 
-### Features
+### Current Features
+#### main.py
+- reader: monitor selective elements for keywords
+- proxyReader: uses TOR and selective elements and ids
+- mainFeed: monitors feed and print out the latest items including necessary keywords
+
+#### runner.py
+- multiReader: monitor selective words in the whole page
+
+### Deprecated
 - Finder: verifies if the keyword exist
 - ForeverFinder: verifies if the keyword exist in a forever loop (TBD)
 - Difference: verifies if there is a difference to the website from the last call 
@@ -99,24 +106,18 @@ python3 mainFeed.py "https://www.site.com.au/feed" DISCORD_FEED_WEBHOOK_URL
 - differencePage: any page differences (javascript elements change often)
 - multiReader: combination of readers from the top to one
 - proxyReader: uses TOR and selective elements and ids
-
 - mainFeed: monitors feed and print out the latest items
 
-### Experimental
-- sample.py
-- main.py
 
 ## Future Upgrades
 - Utilise forever functions and proper failover mechanisms
 - Setting up databases for mutliple monitors to query
 - Add logging
-
-## Completed Updates
-- DONE: Improve wildcard searches. Now in main.py
+- Use argparse for arguments
+- Improve README documentation
 
 ## Tech Debt
 - Clean up inferior functions
-- Use classes instead of subroutines or scripts
-- Deprecate inferior functions (eg. Catch monitor)
 - It should be running forever functions or as a service instead
-- Move it to it's appropriate folders
+- Add more descriptive subroutine names
+- Move multireader to main.py

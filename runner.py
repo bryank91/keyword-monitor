@@ -2,8 +2,8 @@
 import os
 import argparse
 import sys
-from discordBot import sampleMessage, message
-from pageMonitor import differencesMultipleId, multiReader, multiReaderMultiFile
+from Deprecated.discordBot import sampleMessage, message
+from Deprecated.pageMonitor import differencesMultipleId, multiReader, multiReaderMultiFile
 from dotenv import load_dotenv
 
 # Future implementation will use ArgumentParser

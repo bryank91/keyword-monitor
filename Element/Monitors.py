@@ -1,5 +1,3 @@
-from ConnectionManager import ConnectionManager
-from pageMonitor import multiReader
 from bs4 import BeautifulSoup
 import re
 import os.path
