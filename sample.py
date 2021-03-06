@@ -10,7 +10,7 @@ azKeyword = sys.argv[1]
 def testProxy(keyword, fileReader):
     cm = ConnectionManager()
     cm._get_connection()
-    response = cm.request("https://www.amazon.com.au/s?k=ps5&ref=nb_sb_noss").read() # TODO: hardcoded
+    response = cm.request("**REDACTED**").read() # TODO: hardcoded
     # response = cm.request("http://icanhazip.com/").read() # TODO: change    
     soup = BeautifulSoup(response, "lxml")
     data = ""
