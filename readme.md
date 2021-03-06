@@ -1,5 +1,10 @@
 # Keyword Monitor
 Monitors website for specific keywords
+Previously was used to monitor websites for products such as monitor releases, Hypewear, In-Stock keyboards with successful rates.
+However proxies tend to be clipped due it being TOR public nodes.
+Decided to open source it for help in improving the product and for public use.
+
+This was successfully ran with UNIX in the cloud but it can be setup for residential.
 
 ## Setting up
 Install all prerequisites
@@ -121,3 +126,4 @@ python3 mainFeed.py "https://www.site.com.au/feed" "keyword1,keyword2"
 - It should be running forever functions or as a service instead
 - Add more descriptive subroutine names
 - Move multireader to main.py
+- Remove all deprecated code (should not be stored in deprecated fodler)
