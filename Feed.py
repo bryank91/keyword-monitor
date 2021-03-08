@@ -9,10 +9,10 @@ from Discord import Discord
 from Feeds import Feeds
 
 if sys.argv[1] == '-h' or len(sys.argv) < 2:
-    print('./mainFeed.py url webhook_url')
+    print('./Feed.py url webhook_url')
     sys.exit()
 
-env = "FEED_WEBHOOK_URL" # semi permenant
+env = "FEED_WEBHOOK_URL"  # semi permenant
 bsTypeId = None
 
 url = sys.argv[1]

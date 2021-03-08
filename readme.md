@@ -93,14 +93,22 @@ python3 mainFeed.py "https://www.site.com.au/feed"
 python3 mainFeed.py "https://www.site.com.au/feed" "keyword1,keyword2"
 ```
 
+### Setting up Shopify Automation
+- You will require to install chromedriver
+- `https://chromedriver.storage.googleapis.com/index.html?path=89.0.4389.23/`
+
+
 ### Current Features
-#### main.py
+#### Main.py
 - reader: monitor selective elements for keywords
 - proxyReader: uses TOR and selective elements and ids
 - mainFeed: monitors feed and print out the latest items including necessary keywords
 
-#### runner.py
+#### Runner.py
 - multiReader: monitor selective words in the whole page
+
+### Feed.py
+- Supports only one function and a website (requires updates)
 
 ### Deprecated
 - Finder: verifies if the keyword exist
